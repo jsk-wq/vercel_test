@@ -20,7 +20,9 @@ export function Header({ lastUpdated, loading, onRefresh }: HeaderProps) {
         <div>
           <p className="header__eyebrow">Academic Calendar</p>
           <h1 className="header__title">2026 학사일정</h1>
-          <p className="header__subtitle">Google Sheets 기반 실시간 학사 일정 대시보드</p>
+          <p className="header__subtitle">
+            Google Sheets 연동 · 5분마다 자동 갱신
+          </p>
         </div>
         <div className="header__actions">
           {lastUpdated && (

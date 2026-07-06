@@ -3,7 +3,7 @@ import { parseDate } from './scheduleUtils'
 
 const SHEET_ID = '1VHEtEdSHVGsCS70DbVXfXUbPpNgoUlNgsB7hph2JzOM'
 const DIRECT_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent('시트1')}`
-const PROXY_URL = '/api/schedule.csv'
+const PROXY_URL = '/api/schedule'
 
 function parseCsvLine(line: string): string[] {
   const cells: string[] = []
@@ -84,7 +84,7 @@ function rowToEvent(row: Record<string, string>, index: number): ScheduleEvent |
 }
 
 async function fetchCsv(url: string): Promise<string> {
-  const response = await fetch(url)
+  const response = await fetch(`${url}?_=${Date.now()}`, { cache: 'no-store' })
   if (!response.ok) {
     throw new Error(`HTTP ${response.status}`)
   }
@@ -95,9 +95,9 @@ export async function fetchSchedule(): Promise<ScheduleEvent[]> {
   let csvText: string
 
   try {
-    csvText = await fetchCsv(DIRECT_URL)
-  } catch {
     csvText = await fetchCsv(PROXY_URL)
+  } catch {
+    csvText = await fetchCsv(DIRECT_URL)
   }
 
   const rows = parseCsv(csvText)

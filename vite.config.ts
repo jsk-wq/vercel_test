@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api/schedule.csv': {
+      '/api/schedule': {
         target: 'https://docs.google.com',
         changeOrigin: true,
         rewrite: () =>
