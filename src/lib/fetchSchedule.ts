@@ -2,7 +2,7 @@ import type { ScheduleEvent } from '../types/schedule'
 import { parseDate } from './scheduleUtils'
 
 const SHEET_ID = '1VHEtEdSHVGsCS70DbVXfXUbPpNgoUlNgsB7hph2JzOM'
-const DIRECT_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent('시트1')}`
+const DIRECT_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=0`
 const PROXY_URL = '/api/schedule'
 
 function parseCsvLine(line: string): string[] {

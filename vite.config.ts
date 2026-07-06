@@ -10,8 +10,7 @@ export default defineConfig({
       '/api/schedule': {
         target: 'https://docs.google.com',
         changeOrigin: true,
-        rewrite: () =>
-          `/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent('시트1')}`,
+        rewrite: () => `/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=0`,
       },
     },
   },
